@@ -7,4 +7,9 @@ jobs:
     steps:
       - name: Print to console
         run: echo Hello ${{ github.actor }}
+      - name: Check node version
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      run: node-v
     
