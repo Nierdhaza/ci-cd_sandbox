@@ -1,0 +1,10 @@
+name: Demo name
+run-name: ${{ github.actor }}
+on: [workflow_dispatch]
+jobs:
+  some-job-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print to console
+        run: echo Hello ${{ github.actor }}
+    
