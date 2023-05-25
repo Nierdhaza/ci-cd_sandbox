@@ -1,0 +1,25 @@
+name: Create artifact
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get repo code
+        uses: actions/checkout@v3
+      - name: install deps
+        run: npm ci
+      - name: build project
+        run: npm run build
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: react-app-build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: react-app-build
